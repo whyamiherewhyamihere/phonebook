@@ -3,6 +3,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { lightTheme } from './theme/themes';
 import { SearchBar } from './components/SearchBar/SearchBar';
 import { EmployeeList } from './components/EmployeesTable/EmployeeList';
+import { SearchHistory } from './components/SearchHistory/SearchHistory';
 
 const GlobalStyle = createGlobalStyle`
   * { box-sizing: border-box; }
@@ -34,6 +35,7 @@ export default function App() {
       <h1>Поиск сотрудников</h1>
       <p className="intro">Выберите ФИО, должность или подразделение. Все данные в этом справочнике вымышленные.</p>
       <SearchBar />
+      <SearchHistory />
       <EmployeeList />
     </main>
     <footer>Локальный справочник · 18 демонстрационных сотрудников</footer>
