@@ -16,6 +16,12 @@ export interface SearchParams {
   category: CATEGORIES;
 }
 
+export interface SearchHistoryEntry {
+  value: string;
+  category: CATEGORIES;
+  createdAt: string;
+}
+
 export const categoryLabels: Record<CATEGORIES, string> = {
   fullName: 'ФИО',
   position: 'Должность',

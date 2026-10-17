@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { CATEGORIES, Employee, SearchParams } from '../types';
+import type { CATEGORIES, Employee, SearchParams, SearchHistoryEntry } from '../types';
 import { employees } from '../data/employees';
 import { searchEmployees } from '../utils/searchEmployees';
 
@@ -9,7 +9,7 @@ interface PhonebookState {
   EmployeesListLimit: Employee[];
   employeesList: Employee[];
   submittedSearch: SearchParams | null;
-  searchHistory: SearchParams[];
+  searchHistory: SearchHistoryEntry[];
   setSearchFieldText: (value: string) => void;
   setCategory: (category: CATEGORIES) => void;
   clearEmployeesListLimit: () => void;
@@ -56,6 +56,7 @@ export const usePhonebookStore = create<PhonebookState>((set) => ({
     const newSearch = {
       value: trimmed,
       category: category,
+      createdAt: new Date().toISOString(),
     };
 
     set(function (state) {

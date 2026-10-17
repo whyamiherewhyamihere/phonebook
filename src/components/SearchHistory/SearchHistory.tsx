@@ -7,9 +7,11 @@ export function SearchHistory() {
     return state.searchHistory;
   });
 const historyItems = searchHistory.map(function (entry, index){
+   const date = new Date(entry.createdAt);
+    const formattedDate = date.toLocaleDateString('ru-RU');
     return(
         <li key={index}>
-            {entry.value} — {categoryLabels[entry.category]}
+            {entry.value} — {categoryLabels[entry.category]} — {formattedDate} 
         </li>
     );
 }
