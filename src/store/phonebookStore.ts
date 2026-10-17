@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import type { CATEGORIES, Employee, SearchParams, SearchHistoryEntry } from '../types';
 import { employees } from '../data/employees';
-import { searchEmployees } from '../utils/searchEmployees';
+import { searchEmployees, normalizeQuery,} from '../utils/searchEmployees';
+
 
 interface PhonebookState {
   searchFieldText: string;
@@ -60,9 +61,20 @@ export const usePhonebookStore = create<PhonebookState>((set) => ({
     };
 
     set(function (state) {
-      const updatedHistory = [newSearch, ...state.searchHistory];
-      const limitedHistory = updatedHistory.slice(0, 5);
+      const historyWithoutDuplicate = state.searchHistory.filter(function (entry) {
+        const oldText = normalizeQuery(entry.value);
+        const newText = normalizeQuery(newSearch.value);
 
+        const textIsDifferent = oldText !== newText;
+        const categoryIsDifferent = entry.category !== newSearch.category;
+
+      return textIsDifferent || categoryIsDifferent;
+    }
+  );
+
+const updatedHistory = [newSearch, ...historyWithoutDuplicate];
+const limitedHistory = updatedHistory.slice(0, 5);
+      
       return {
         employeesList: foundEmployees,
         submittedSearch: newSearch,
