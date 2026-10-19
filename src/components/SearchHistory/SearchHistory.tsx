@@ -37,6 +37,10 @@ const fetchEmployeesWithParams = usePhonebookStore(function (state) {
   return state.fetchEmployeesWithParams;
 });
 
+const clearSearchHistory = usePhonebookStore(function (state) {
+  return state.clearSearchHistory;
+});
+
 if (searchHistory.length === 0) {
   return (
     <section>
@@ -54,6 +58,9 @@ function handleRepeatSearch(entry: SearchHistoryEntry) {
 return (
   <section>
     <h2>История поиска</h2>
+    <button type="button" onClick={clearSearchHistory}>
+       Очистить историю
+    </button>
     <ol>{historyItems}</ol>
   </section>
 );

@@ -4,6 +4,7 @@ import { employees } from '../data/employees';
 import { searchEmployees, normalizeQuery,} from '../utils/searchEmployees';
 
 
+
 interface PhonebookState {
   searchFieldText: string;
   category: CATEGORIES;
@@ -11,6 +12,7 @@ interface PhonebookState {
   employeesList: Employee[];
   submittedSearch: SearchParams | null;
   searchHistory: SearchHistoryEntry[];
+  clearSearchHistory: () => void;
   setSearchFieldText: (value: string) => void;
   setCategory: (category: CATEGORIES) => void;
   clearEmployeesListLimit: () => void;
@@ -84,4 +86,10 @@ const limitedHistory = updatedHistory.slice(0, 5);
 
     return true;
   },
+  clearSearchHistory: function () {
+    set({
+      searchHistory: [],
+    });
+  },
+  
 }));
