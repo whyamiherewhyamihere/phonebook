@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import type { CATEGORIES, Employee, SearchParams, SearchHistoryEntry } from '../types';
 import { employees } from '../data/employees';
 import { searchEmployees, normalizeQuery,} from '../utils/searchEmployees';
-import { saveSearchHistory } from '../utils/searchHistoryStorage';
+import { saveSearchHistory, loadSearchHistory} from '../utils/searchHistoryStorage';
 
 
 
@@ -28,7 +28,7 @@ export const usePhonebookStore = create<PhonebookState>((set) => ({
   EmployeesListLimit: [],
   employeesList: [],
   submittedSearch: null,
-  searchHistory: [],
+  searchHistory: loadSearchHistory(),
 
   setSearchFieldText: (value) => set({ searchFieldText: value }),
 
