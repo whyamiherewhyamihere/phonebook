@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import type { CATEGORIES, Employee, SearchParams, SearchHistoryEntry } from '../types';
 import { employees } from '../data/employees';
 import { searchEmployees, normalizeQuery,} from '../utils/searchEmployees';
+import { saveSearchHistory } from '../utils/searchHistoryStorage';
 
 
 
@@ -76,6 +77,8 @@ export const usePhonebookStore = create<PhonebookState>((set) => ({
 
 const updatedHistory = [newSearch, ...historyWithoutDuplicate];
 const limitedHistory = updatedHistory.slice(0, 5);
+
+saveSearchHistory(limitedHistory);
       
       return {
         employeesList: foundEmployees,
@@ -90,6 +93,7 @@ const limitedHistory = updatedHistory.slice(0, 5);
     set({
       searchHistory: [],
     });
+     saveSearchHistory([]);
   },
   
 }));
