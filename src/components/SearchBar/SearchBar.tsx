@@ -42,11 +42,19 @@ export function SearchBar() {
   }, []);
 
   function handleSearch(event?: FormEvent) {
-    event?.preventDefault();
-    setIsOpen(false);
-    const success = fetchEmployeesWithParams(searchFieldText, category);
-    setError(success ? '' : 'Введите не менее трёх символов.');
+  event?.preventDefault();
+
+  const success = fetchEmployeesWithParams(searchFieldText, category);
+
+  if (!success) {
+    setError('Введите не менее трёх символов.');
+    setIsOpen(true);
+    return;
   }
+
+  setError('');
+  setIsOpen(false);
+}
 
   const showSuggestions = isOpen && searchFieldText.trim().length >= 2 && debouncedQuery === searchFieldText;
 

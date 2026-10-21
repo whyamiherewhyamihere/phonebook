@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   .intro, .hint { color: #666; font-size: 14px; line-height: 1.5; }
   .intro { margin-bottom: 24px; }
   .hint { margin: 10px 0; overflow-wrap: anywhere; }
-  .error { color: #ae2424; font-size: 14px; }
+  .error { color: #ae2424; font-size: 13px; margin: 8px 0 }
   .error:empty { display: none; }
   .suggestion-label { margin: 4px 12px 12px; font-size: 12px; color: #666; }
   .empty-state { background: #f7f7f7; color: #666; padding: 32px 16px; text-align: center; font-size: 14px; line-height: 1.5; }

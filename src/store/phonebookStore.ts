@@ -47,9 +47,14 @@ export const usePhonebookStore = create<PhonebookState>((set) => ({
   fetchEmployeesWithParams: function (value, category) {
     const trimmed = value.trim().replace(/\s+/g, ' ');
 
-    if (trimmed.length < 3) {
-      return false;
-    }
+   if (trimmed.length < 3) {
+  set({
+    employeesList: [],
+    submittedSearch: null,
+  });
+
+  return false;
+}
 
     const foundEmployees = searchEmployees(
       employees,
