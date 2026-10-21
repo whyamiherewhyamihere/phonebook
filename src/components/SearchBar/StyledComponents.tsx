@@ -56,8 +56,9 @@ export const CustomDatalistItem = styled.li`
 export const CustomDatalistItemHeader = styled.span`font-size: 15px;`;
 export const CustomDatalistItemText = styled.span`font-size: 12px; color: #595959; margin-top: 4px;`;
 export const MoreButton = styled.button`
-  width: 100%; padding: 12px; border: none; border-radius: 6px;
-  background: transparent; font-weight: 700; cursor: pointer;
-  color: ${(props) => props.theme.mainTextColor};
-  &:hover { background: ${(props) => props.theme.backgroundRowHover}; }
+width: 100%; padding: 12px; border: none; border-radius: 6px;
+background: transparent; font-weight: 700; cursor: pointer;
+color: ${(props) => props.theme.mainTextColor};
+&:hover:not(:disabled) { background: ${(props) => props.theme.backgroundRowHover};}
+&:disabled { opacity: 0.5; cursor: not-allowed;}
 `;

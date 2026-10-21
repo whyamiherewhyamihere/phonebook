@@ -58,6 +58,9 @@ export function SearchBar() {
 
   const showSuggestions = isOpen && searchFieldText.trim().length >= 2 && debouncedQuery === searchFieldText;
 
+  const trimmedQuery = searchFieldText.trim().replace(/\s+/g, ' ');
+  const isSearchDisabled = trimmedQuery.length < 3;
+
   return (
     <div ref={containerRef} onKeyDown={(event) => {
       if (event.key === 'Escape') setIsOpen(false);
@@ -94,7 +97,7 @@ export function SearchBar() {
             <CustomDatalistItemText>{employee.positionTitle} · {employee.departmentName}</CustomDatalistItemText>
           </CustomDatalistItem>)}
         </ul> : <p className="hint">Ничего не найдено. Проверьте запрос или категорию.</p>}
-        <MoreButton type="button" onClick={() => handleSearch()}>Показать все</MoreButton>
+        <MoreButton type="button"  disabled={isSearchDisabled} onClick={() => handleSearch()}>Показать все</MoreButton>
       </CustomDatalist>}
     </div>
   );
